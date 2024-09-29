@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Mini Translator App',
+        title: 'Wisp - Mini Translator App',
         theme: ThemeData(
           useMaterial3: true,
           fontFamily: 'PretendardVariable',
@@ -57,18 +57,18 @@ class ColorSystem {
   bool isLight = true;
 
   // Border Color
-  late Color defaultBorderColor;
-  late Color focusedBorderColor;
+  Color defaultBorderColor = Color(0xFFDBDBDB);
+  Color focusedBorderColor = Color(0xFF353535);
 
   // Surface Color
-  late Color backgroundColor;
-  late Color surfaceColor;
-  late Color buttonSurfaceColor;
+  Color backgroundColor = Colors.white;
+  Color surfaceColor = Color(0xFFF4F5F6);
+  Color buttonSurfaceColor = Color(0xFF5F4AFF);
 
   // Text Color
-  late Color primaryTextColor;
-  late Color secondaryTextColor;
-  late Color buttonTextColor;
+  Color primaryTextColor = Color(0xFF353535);
+  Color secondaryTextColor = Color(0xFFA7A7A7);
+  Color buttonTextColor = Colors.white;
 
   void toggleMode() {
     isLight = !isLight;
@@ -236,8 +236,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: 20,
                         child: Focus(
                           onFocusChange: (hasFocus) {
-                            if(hasFocus) print('hi');
-                            else print('bye');
+                            // if(hasFocus) print('hi');
+                            // else print('bye');
                           },
                           child: TextField(
                             decoration: InputDecoration(
