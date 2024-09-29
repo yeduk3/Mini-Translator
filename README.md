@@ -2,7 +2,7 @@
 
 My first toy project with Flutter. ><
 
-It might be useful when you study something in english but you are korean.
+Wisp whispers you mysterious languages...
 
 Happy Study!
 
@@ -14,7 +14,7 @@ If you have your API Key,
 
 Paste it into lib/main.dart
 
-Then, a cuty mini translator is yours!
+Then, a cuty wisp is yours!
 
 ---
 
