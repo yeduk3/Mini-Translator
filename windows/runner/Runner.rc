@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "mini_translator" "\0"
+            VALUE "FileDescription", "Wisp" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "mini_translator" "\0"
+            VALUE "InternalName", "Wisp" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "mini_translator.exe" "\0"
-            VALUE "ProductName", "mini_translator" "\0"
+            VALUE "OriginalFilename", "wisp.exe" "\0"
+            VALUE "ProductName", "Wisp" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

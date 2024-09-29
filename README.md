@@ -1,4 +1,4 @@
-# mini_translator
+# Wisp - Mini Translator
 
 My first toy project with Flutter. ><
 
