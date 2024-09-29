@@ -343,7 +343,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 268, height: 2,),
+                      SizedBox(width: 268, height: 4,),
                       Expanded(
                         flex: 1,
                         child: SingleChildScrollView(
