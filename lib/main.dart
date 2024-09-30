@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:window_manager/window_manager.dart';
+
 
 
 void main() async {
@@ -15,6 +17,7 @@ void main() async {
   // windowManager.setMaximumSize(Size(314.4, 249.6));
   // windowManager.setMinimumSize(Size(314.4, 249.6));
   windowManager.setResizable(false);
+  windowManager.setMaximizable(false);
 
   runApp(const MyApp());
 }
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
         title: 'Wisp - Mini Translator App',
         theme: ThemeData(
           useMaterial3: true,
-          fontFamily: 'PretendardVariable',
+          fontFamily: 'Pretendard',
         ),
         home: const MyHomePage(),
       );
@@ -43,9 +46,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class FontSystem {
-  static const pretendardRegular = <FontVariation>[FontVariation.weight(400)];
-  static const pretendardMedium = <FontVariation>[FontVariation.weight(500)];
-  static const pretendardSemiBold = <FontVariation>[FontVariation.weight(600)];
+  static const regularTextStyle = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 14,
+    letterSpacing: -0.42,
+  );
+  static const buttonTextStyle = TextStyle(
+    fontWeight: FontWeight.w300,
+    fontSize: 14,
+    letterSpacing: -0.42,
+  );
+  static const labelTextStyle = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 10,
+    height: 0.1,
+    letterSpacing: -0.30,
+  );
 }
 
 class ColorSystem {
@@ -222,11 +238,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           widthFactor: 1,
                           child: Text(
                             _translateFrom,
-                            style: TextStyle(
-                              fontVariations: FontSystem.pretendardSemiBold,
-                              fontSize: 10,
-                              height: 0.1,
-                              letterSpacing: -0.30,
+                            style: FontSystem.labelTextStyle.copyWith(
                               color: colorSystem.secondaryTextColor,
                             ),
                           ),
@@ -245,18 +257,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               border: InputBorder.none,
                               
                               hintText: '번역할 내용을 입력하세요.',
-                              hintStyle: TextStyle(
-                                fontVariations: FontSystem.pretendardRegular,
-                                fontSize: 14,
+                              hintStyle: FontSystem.regularTextStyle.copyWith(
                                 height: 0.1,
-                                letterSpacing: -0.42,
                                 color: colorSystem.secondaryTextColor,
                               ),
                             ),
-                            style: TextStyle(
-                              fontVariations: FontSystem.pretendardRegular,
-                              fontSize: 14,
-                              letterSpacing: -0.42,
+                            style: FontSystem.regularTextStyle.copyWith(
                               color: colorSystem.primaryTextColor,
                             ),
                                         
@@ -288,17 +294,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                       
                     children: [
-                      Icon(
-                        Icons.swap_vert,
-                        color: colorSystem.buttonTextColor,
+                      SvgPicture.asset(
+                        'assets/imgs/swap_icon.svg',
+                        width: 13.35,
+                        height: 13.35,
                       ),
                       SizedBox(width: 4,),
                       Text(
                         'Swap',
-                        style: TextStyle(
-                          fontVariations: FontSystem.pretendardMedium,
-                          fontSize: 14,
-                          letterSpacing: -0.42,
+                        style: FontSystem.buttonTextStyle.copyWith(
                           color: colorSystem.buttonTextColor,
                         ),
                       ),
@@ -333,11 +337,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           widthFactor: 1,
                           child: Text(
                             _translateTo,
-                            style: TextStyle(
-                              fontVariations: FontSystem.pretendardSemiBold,
-                              fontSize: 10,
-                              height: 0.1,
-                              letterSpacing: -0.30,
+                            style: FontSystem.labelTextStyle.copyWith(
                               color: colorSystem.secondaryTextColor,
                             ),
                           ),
@@ -350,10 +350,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           scrollDirection: Axis.vertical,
                           child: SelectableText(
                             _translatedText,
-                            style: TextStyle(
-                              fontVariations: FontSystem.pretendardRegular,
-                              fontSize: 14,
-                              letterSpacing: -0.42,
+                            style: FontSystem.regularTextStyle.copyWith(
                               color: colorSystem.primaryTextColor,
                             ),
                           ),
@@ -368,185 +365,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-    
-
-    // return Scaffold(
-    //   body: Padding(
-    //     padding: const EdgeInsets.symmetric(
-    //       vertical: 12,
-    //       horizontal: 16,
-    //     ),
-    //     child: Column(
-    //       children: [
-    //         // Input Box
-    //         Container(
-    //           height: 52,
-    //           decoration: BoxDecoration(
-    //             border: Border.all(
-    //               color: Color(0xFFA7A7A7),
-    //             ),
-    //             borderRadius: BorderRadius.all(Radius.circular(4)),
-    //           ),
-    //           child: Padding(
-    //             padding: const EdgeInsets.symmetric(
-    //               vertical: 9,
-    //               horizontal: 15,
-    //             ),
-    //             // Input Box - Inner
-    //             child: Column(
-    //               crossAxisAlignment: CrossAxisAlignment.start,
-    //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //               children: [
-    //                 // Input Box - Inner - Label
-    //                 SizedBox(
-    //                   height: 10,
-    //                   child: Center(
-    //                     widthFactor: 1,
-    //                     child: Text(
-    //                       _translateFrom,
-    //                       style: TextStyle(
-    //                         // Input Box - Inner - Label - Font Setting
-    //                         fontVariations: _pretendardSemiBold,
-    //                         fontSize: 10,
-    //                         // Input Box - Inner - Label - Font Color
-    //                         color: Color(0xFFA7A7A7),
-    //                         // Input Box - Inner - Label - Font Letters
-    //                         height: 0.10,
-    //                         letterSpacing: -0.30,
-    //                         ),
-    //                     ),
-    //                   ),
-    //                 ),
-    //                 SizedBox(
-    //                   height: 20,
-    //                   child: TextField(
-    //                     controller: myController,
-    //                     // textAlignVertical: TextAlignVertical.bottom,
-    //                     // maxLines: 1,
-    //                     decoration: InputDecoration(
-    //                       // contentPadding: EdgeInsets.zero,
-    //                       // isDense: true,
-    //                       border: InputBorder.none,
-    //                       // isCollapsed: true,
-    //                       hintText: '번역할 내용을 입력하세요.',
-    //                       hintStyle: TextStyle(
-    //                         color: Color(0xFFC0C0C0),
-    //                         // fontWeight: FontWeight.w200,
-    //                         fontSize: MediaQuery.of(context).textScaler.clamp().scale(14),
-    //                         fontVariations: _pretendardRegular,
-    //                         // height: 0.10,
-    //                         letterSpacing: -0.42,
-    //                       ),
-    //                     ),
-    //                     cursorColor: Color(0xFF353535),
-    //                     cursorHeight: 18,
-    //                     cursorWidth: 1.0,
-    //                     style: TextStyle(
-    //                       fontSize: 14,
-    //                       // fontWeight: FontWeight.w200,
-    //                       fontVariations: _pretendardRegular,
-    //                       // height: 0.10,
-    //                       letterSpacing: -0.42,
-    //                     ),
-    //                     onSubmitted: (value) {
-    //                       _translateText(myController.text, _translateTo);
-    //                     },
-    //                   ),
-    //                 ),
-    //               ],
-    //             ),
-    //           ),
-    //         ),
-    //         const SizedBox(height: 8,),
-    //         SizedBox(
-    //           width: 268,
-    //           height: 40,
-    //           child: ElevatedButton(
-    //             onPressed: () {
-    //               toggleLanguage();
-    //               // print(MediaQuery.of(context).);
-    //             }, 
-    //             style: ElevatedButton.styleFrom(
-    //               backgroundColor: Color.fromARGB(255, 95, 74, 255),
-    //               iconColor: Colors.white,
-    //               shape: RoundedRectangleBorder(
-    //                 borderRadius: BorderRadius.all(Radius.circular(8)),
-    //               )
-    //             ),
-                
-    //             child: Row(
-    //               mainAxisAlignment: MainAxisAlignment.center,
-    //               crossAxisAlignment: CrossAxisAlignment.center,
-    //               children: [
-    //                 Icon(Icons.swap_vert),
-    //                 SizedBox(width: 4,),
-    //                 Text(
-    //                   'Swap',
-    //                   style: TextStyle(
-    //                     color: Colors.white,
-    //                     // fontWeight: FontWeight.w300,
-    //                     fontVariations: _pretendardMedium,
-    //                     height: 0.10,
-    //                     letterSpacing: -0.42,
-    //                   ),
-    //                 )
-    //               ],
-    //             ),
-    //           ),
-    //         ),
-    //         SizedBox(height: 8,),
-    //         // Expanded(
-    //         //   // height: 93,
-    //         //   child: TextField(
-    //         //     maxLines: null,
-    //         //     expands: true,
-    //         //     keyboardType: TextInputType.multiline,
-    //         //     readOnly: true,
-    //         //     decoration: InputDecoration(
-    //         //       enabledBorder: OutlineInputBorder(
-    //         //         borderSide: BorderSide(color: Color(0xFFC0C0C0))
-    //         //       ),
-    //         //       focusedBorder: OutlineInputBorder(
-    //         //         borderSide: BorderSide(color: Color(0xFFC0C0C0))
-    //         //       ),
-    //         //       hintText: _translatedText,
-    //         //       hintStyle: TextStyle(
-    //         //         fontSize: 14,
-    //         //         fontWeight: FontWeight.w200,
-    //         //         height: 0.10,
-    //         //         letterSpacing: -0.42,
-    //         //       ),
-    //         //       labelText: _translateTo,
-    //         //       labelStyle: TextStyle(
-    //         //         color: Color(0xFFC0C0C0),
-    //         //         fontWeight: FontWeight.w400,
-    //         //         height: 0.10,
-    //         //         letterSpacing: -0.30,
-    //         //       ),
-    //         //       floatingLabelBehavior: FloatingLabelBehavior.always,
-    //         //     ),
-    //         //   ),
-    //         // ),
-    //         Row(
-    //           children: [
-    //             Text(
-    //               // '긴문장긴문장 긴문장긴문장 긴문장긴문장 긴문장긴문장',
-    //               _translatedText,
-    //               style: TextStyle(
-    //                 fontSize: 14,
-    //                 // fontWeight: FontWeight.w200,
-    //               fontVariations: _pretendardRegular,
-    //                 height: 0.10,
-    //                 letterSpacing: -0.42,
-    //                 overflow: TextOverflow.clip,
-    //               ),
-    //               // overflow: TextOverflow.clip,
-    //             ),
-    //           ],
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
